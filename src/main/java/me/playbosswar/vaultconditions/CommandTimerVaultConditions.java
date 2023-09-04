@@ -3,6 +3,7 @@ package me.playbosswar.vaultconditions;
 import me.playbosswar.com.api.ConditionExtension;
 import me.playbosswar.com.api.ConditionRules;
 import me.playbosswar.com.api.events.EventExtension;
+import me.playbosswar.vaultconditions.conditions.*;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.jetbrains.annotations.NotNull;
@@ -20,7 +21,13 @@ public class CommandTimerVaultConditions extends ConditionExtension {
             return;
         }
 
-        rules.register();
+        rules.register(
+                new CheckPlayerBalance(),
+                new CheckBankBalance(),
+                new HasAccount(),
+                new IsBankMember(),
+                new IsBankOwner()
+        );
     }
 
     @Override
@@ -54,9 +61,7 @@ public class CommandTimerVaultConditions extends ConditionExtension {
     }
 
     public ArrayList<EventExtension> getEvents() {
-        ArrayList<EventExtension> events = new ArrayList<>();
-
-        return events;
+        return new ArrayList<>();
     }
 
     public static Economy getEcon() {

@@ -25,6 +25,10 @@ public class HasAccount implements ConditionRule {
     public boolean evaluate(Facts facts) {
         Player p = facts.get("player");
 
+        if (p == null) {
+            return false;
+        }
+
         return CommandTimerVaultConditions.getEcon().hasAccount(p);
     }
 

@@ -27,6 +27,10 @@ public class IsBankOwner implements ConditionRule {
         Player p = facts.get("player");
         String bankName=  facts.get("bank_name");
 
+        if (p == null) {
+            return false;
+        }
+
         return CommandTimerVaultConditions.getEcon().isBankOwner(bankName, p).type == EconomyResponse.ResponseType.SUCCESS;
     }
 

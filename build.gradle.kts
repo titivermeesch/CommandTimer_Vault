@@ -25,7 +25,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("me.playbosswar.com:commandtimer:8.0.0")
+    compileOnly("me.playbosswar.com:commandtimer:8.3.3")
     compileOnly("org.jeasy:easy-rules-core:4.1.0")
     compileOnly("org.jetbrains:annotations:23.1.0")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")

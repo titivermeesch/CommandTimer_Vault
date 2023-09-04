@@ -28,11 +28,14 @@ public class CheckPlayerBalance implements ConditionRule {
         Player p = facts.get("player");
         double value = facts.get("value");
         ConditionCompare conditionCompare = facts.get("balance_compare");
-        double balance = CommandTimerVaultConditions.getEcon().getBalance(p);
-//        CommandTimerVaultConditions.getEcon().isBankMember()
-//        CommandTimerVaultConditions.getEcon().isBankOwner()
 
-        return ConditionHelpers.calculateConditionCompare(conditionCompare, value, balance);
+        if (p == null) {
+            return false;
+        }
+
+        double balance = CommandTimerVaultConditions.getEcon().getBalance(p);
+
+        return ConditionHelpers.calculateConditionCompare(conditionCompare, balance, value);
     }
 
     @Override

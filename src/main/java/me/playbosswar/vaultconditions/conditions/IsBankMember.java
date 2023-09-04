@@ -27,6 +27,10 @@ public class IsBankMember implements ConditionRule {
         Player p = facts.get("player");
         String bankName=  facts.get("bank_name");
 
+        if (p == null) {
+            return false;
+        }
+
         return CommandTimerVaultConditions.getEcon().isBankMember(bankName, p).type == EconomyResponse.ResponseType.SUCCESS;
     }
 
