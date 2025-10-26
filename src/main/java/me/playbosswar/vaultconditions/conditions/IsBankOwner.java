@@ -4,7 +4,7 @@ import me.playbosswar.com.api.ConditionRule;
 import me.playbosswar.com.api.NeededValue;
 import me.playbosswar.vaultconditions.CommandTimerVaultConditions;
 import net.milkbowl.vault.economy.EconomyResponse;
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +24,7 @@ public class IsBankOwner implements ConditionRule {
 
     @Override
     public boolean evaluate(Facts facts) {
-        Player p = facts.get("player");
+        OfflinePlayer p = facts.get("player");
         String bankName=  facts.get("bank_name");
 
         if (p == null) {
