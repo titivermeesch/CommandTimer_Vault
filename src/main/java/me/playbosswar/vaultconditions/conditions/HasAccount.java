@@ -3,7 +3,7 @@ package me.playbosswar.vaultconditions.conditions;
 import me.playbosswar.com.api.ConditionRule;
 import me.playbosswar.com.api.NeededValue;
 import me.playbosswar.vaultconditions.CommandTimerVaultConditions;
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +23,7 @@ public class HasAccount implements ConditionRule {
 
     @Override
     public boolean evaluate(Facts facts) {
-        Player p = facts.get("player");
+        OfflinePlayer p = facts.get("player");
 
         if (p == null) {
             return false;

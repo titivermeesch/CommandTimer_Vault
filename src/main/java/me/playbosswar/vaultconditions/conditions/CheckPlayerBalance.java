@@ -5,7 +5,7 @@ import me.playbosswar.com.api.NeededValue;
 import me.playbosswar.com.conditionsengine.ConditionCompare;
 import me.playbosswar.com.conditionsengine.conditions.ConditionHelpers;
 import me.playbosswar.vaultconditions.CommandTimerVaultConditions;
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +25,7 @@ public class CheckPlayerBalance implements ConditionRule {
 
     @Override
     public boolean evaluate(Facts facts) {
-        Player p = facts.get("player");
+        OfflinePlayer p = facts.get("player");
         double value = facts.get("value");
         ConditionCompare conditionCompare = facts.get("balance_compare");
 
