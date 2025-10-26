@@ -1,5 +1,3 @@
-import java.net.URI
-
 plugins {
     id("java")
 }
@@ -9,18 +7,30 @@ java {
 }
 
 group = "me.playbosswar.vaultconditions"
-version = "1.0.0"
+version = "1.1.0"
 
 repositories {
     mavenCentral()
     mavenLocal()
 
     maven {
-        url = URI("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
 
     maven {
-        url = URI("https://jitpack.io")
+        url = 'https://repo.papermc.io/repository/maven-public/'
+    }
+
+    maven {
+        url = "https://jitpack.io"
+    }
+
+    maven {
+        url = "https://maven.pkg.github.com/titivermeesch/CommandTimer"
+        credentials {
+            username = System.env.GH_REPO_USERNAME
+            password = System.env.GH_REPO_TOKEN
+        }
     }
 }
 

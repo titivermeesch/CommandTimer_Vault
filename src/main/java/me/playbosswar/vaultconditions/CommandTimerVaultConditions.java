@@ -5,6 +5,7 @@ import me.playbosswar.com.api.ConditionRules;
 import me.playbosswar.com.api.events.EventExtension;
 import me.playbosswar.vaultconditions.conditions.*;
 import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,21 +14,32 @@ import java.util.ArrayList;
 public class CommandTimerVaultConditions extends ConditionExtension {
     ConditionRules rules = new ConditionRules();
     private static Economy econ = null;
+    private static Permission perms = null;
 
     public CommandTimerVaultConditions() {
         if (!setupEconomy()) {
-            getCommandTimerPlugin().getLogger().severe("CommandTimer disabled because extension requires Vault");
-            getCommandTimerPlugin().getServer().getPluginManager().disablePlugin(getCommandTimerPlugin());
-            return;
+            getCommandTimerPlugin().getLogger().severe("CommandTimer Vault extension will not have economy capabilities because no economy plugin was found");
         }
 
-        rules.register(
-                new CheckPlayerBalance(),
-                new CheckBankBalance(),
-                new HasAccount(),
-                new IsBankMember(),
-                new IsBankOwner()
-        );
+        if (!setupPermissions()) {
+            getCommandTimerPlugin().getLogger().severe("CommandTimer Vault extension will not have permission capabilities because no permission plugin was found");
+        }
+
+        if (econ != null) {
+            rules.register(
+                    new CheckPlayerBalance(),
+                    new CheckBankBalance(),
+                    new HasAccount(),
+                    new IsBankMember(),
+                    new IsBankOwner()
+            );
+        }
+
+        if (perms != null) {
+            rules.register(
+                    new PlayerHasPermission(getCommandTimerPlugin())
+            );
+        }
     }
 
     @Override
@@ -53,7 +65,7 @@ public class CommandTimerVaultConditions extends ConditionExtension {
 
     @Override
     public @NotNull String getVersion() {
-        return "1.0";
+        return "1.1.0";
     }
 
     public @NotNull ConditionRules getRules() {
@@ -68,6 +80,10 @@ public class CommandTimerVaultConditions extends ConditionExtension {
         return econ;
     }
 
+    public static Permission getPerms() {
+        return perms;
+    }
+
     private boolean setupEconomy() {
         if (getCommandTimerPlugin().getServer().getPluginManager().getPlugin("Vault") == null) {
             return false;
@@ -78,5 +94,11 @@ public class CommandTimerVaultConditions extends ConditionExtension {
         }
         econ = rsp.getProvider();
         return econ != null;
+    }
+
+    private boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = getCommandTimerPlugin().getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+        return perms != null;
     }
 }

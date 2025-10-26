@@ -28,7 +28,7 @@ jobs:
         with:
           distribution: "adopt"
           java-version: "21"
-      - run: ./gradlew jar -b java21-build.gradle.kts
+      - run: ./gradlew jar -b java21-build.gradle
         env:
           GH_REPO_USERNAME: ${{ secrets.GH_REPO_USERNAME }}
           GH_REPO_TOKEN: ${{ secrets.GH_REPO_TOKEN }}
