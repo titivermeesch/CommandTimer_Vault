@@ -5,7 +5,7 @@ plugins {
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(8))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
 group = "me.playbosswar.vaultconditions"
@@ -29,6 +29,6 @@ dependencies {
     compileOnly("org.jeasy:easy-rules-core:4.1.0")
     compileOnly("org.jetbrains:annotations:23.1.0")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
-    compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.21.8-R0.1-SNAPSHOT")
     implementation("net.kyori:event-api:3.0.0")
 }
