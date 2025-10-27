@@ -6,8 +6,8 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(8))
 }
 
-group = "me.playbosswar.vaultconditions"
-version = "1.1.0"
+group 'me.playbosswar.vaultconditions'
+version '1.1.0'
 
 repositories {
     mavenCentral()
